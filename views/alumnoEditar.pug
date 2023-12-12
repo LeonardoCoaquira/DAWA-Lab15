@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  div(class="container mt-3")
+    h2(class="text-center") Editar Alumno
+
+    form(action=`/alumnos/editar/${alumno.id}`, method="POST")
+      div(class="form-group")
+        label(for="nombre") Nombre:
+        input(type="text" class="form-control" name="nombre" required value=alumno.nombre)
+      div(class="form-group")
+        label(for="edad") Edad:
+        input(type="number" class="form-control" name="edad" required value=alumno.edad)
+      div(class="form-group")
+        label(for="carrera") Carrera:
+        input(type="text" class="form-control" name="carrera" required value=alumno.carrera)
+      button(type="submit" class="btn btn-primary mt-2") Actualizar

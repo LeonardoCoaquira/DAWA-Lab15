@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  div(class="container mt-3")
+    h2(class="text-center") Nueva Relación Alumno-Curso
+
+    form(action="/alumnosCursos/nuevo" method="POST")
+      div(class="form-group")
+        label(for="id_alumno") Selecciona un Alumno:
+        select(name="id_alumno" class="form-control" required)
+          each alumno in alumnos
+            option(value=alumno.id)= alumno.nombre
+
+      br
+
+      div(class="form-group")
+        label(for="id_curso") Selecciona un Curso:
+        select(name="id_curso" class="form-control" required)
+          each curso in cursos
+            option(value=curso.id)= curso.nombre
+
+      br
+
+      button(type="submit" class="btn btn-success mt-2") Agregar Nueva Relación
+
+    br
+
+    table(class="table table-striped mt-4")
+      thead(class="thead-dark")
+        tr
+          th Nombre Alumno
+          th Nombre Curso
+          th Créditos
+          th Acciones
+
+      tbody
+        each alumnoCurso in alumnosCursos
+          tr
+            td= alumnoCurso.nombre_alumno
+            td= alumnoCurso.nombre_curso
+            td= alumnoCurso.creditos
+            td
+              a(href=`/alumnosCursos/editar/${alumnoCurso.id}`, class="btn btn-info") Editar
+              | &nbsp;
+              a(href=`/alumnosCursos/eliminar/${alumnoCurso.id}`, class="btn btn-danger") Eliminar

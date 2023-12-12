@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  div(class="container mt-3")
+    h2(class="text-center") Editar Curso
+
+    form(action=`/cursos/editar/${curso.id}` method="POST")
+      div(class="form-group")
+        label(for="nombre") Nombre del Curso:
+        input(type="text" class="form-control" name="nombre" required value=curso.nombre)
+      div(class="form-group")
+        label(for="creditos") Créditos:
+        input(type="number" class="form-control" name="creditos" required value=curso.creditos)
+      button(type="submit" class="btn btn-primary mt-2") Actualizar

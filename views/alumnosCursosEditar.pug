@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  div(class="container mt-3")
+    h2(class="text-center") Editar Relación Alumno-Curso
+
+    form(action=`/alumnosCursos/editar/${relacion.id}` method="POST")
+      div(class="form-group")
+        label(for="id_alumno") Selecciona un Alumno:
+        select(name="id_alumno" class="form-control" required)
+          each alumno in alumnos
+            //- Usa la variable isSelected para marcar la opción seleccionada
+            - const isSelected = alumno.id === relacion.id_alumno;
+            option(value=alumno.id selected=isSelected)= alumno.nombre
+
+      br
+
+      div(class="form-group")
+        label(for="id_curso") Selecciona un Curso:
+        select(name="id_curso" class="form-control" required)
+          each curso in cursos
+            //- Usa la variable isSelected para marcar la opción seleccionada
+            - const isSelected = curso.id === relacion.id_curso;
+            option(value=curso.id selected=isSelected)= curso.nombre
+
+      br
+
+      button(type="submit" class="btn btn-primary mt-2") Actualizar

@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  div(class="container mt-3")
+    h2(class="text-center") Cursos Disponibles
+
+    h2(class="mt-4") Agregar Nuevo Curso
+    form(action="/cursos" method="POST")
+      div(class="form-group")
+        label(for="nombre") Nombre del Curso:
+        input(type="text" class="form-control" name="nombre" required)
+      div(class="form-group")
+        label(for="creditos") Créditos:
+        input(type="number" class="form-control" name="creditos" required)
+      button(type="submit" class="btn btn-primary mt-2") Agregar
+
+    br
+
+    table(class="table table-striped mt-4")
+      thead(class="thead-dark")
+        tr
+          th Nombre del Curso
+          th Créditos
+          th Acciones
+      tbody
+        each curso in cursos
+          tr
+            td= curso.nombre
+            td= curso.creditos
+            td
+              a(href=`/cursos/editar/${curso.id}`, class="btn btn-info") Editar
+              | &nbsp;
+              a(href=`/cursos/eliminar/${curso.id}`, class="btn btn-danger") Eliminar
